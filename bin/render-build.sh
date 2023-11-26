@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# esit on error
+set -o errexit
+
+bundle install
+bundle exec reke assets:precompile
+bundle exec rake assets:clean
+bundle exec rake db:migrate
