@@ -1,24 +1,49 @@
 # README
+# usersテーブル
+| Column               | Type   | Option      |
+|----------------------|--------|-------------|
+| nickname             | string | null: false |
+| email                | string | null: false |
+| password             | string | null: false |
+| password confirmation| string | null:false  |
+| last_name            | string | null:false  |
+| first_name           | string | null:false  |
+| last_name_kana       | string | null:false  |
+| first_name_kana      | string | null:false  |
+| birthday             | integer| null:false  |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+has_many: items
+has_many: purchases
 
-Things you may want to cover:
+# itemsテーブル
+| Column            | Type       | Option           |
+|-------------------|------------|------------------|
+| category          | text       | null:false       |
+| situation         | text       | null:false       |
+| charge            | integer    | null:false       |
+| sipping           | text       | null:false       |
+| date              | text       | null:false       |
+| user_id           | references | foreign_key: true|
 
-* Ruby version
+belongs_to: user
+has_one: purchase
 
-* System dependencies
+# purchasesテーブル
+| Column             | Type       | Option           |
+|--------------------|------------|------------------|
+| items_id           | references | foreign_key: true|
+| user_id            | references | foreign_key: true|
 
-* Configuration
+belongs_to: user
+belongs_to: item
+has_one: delivery
 
-* Database creation
+# deliverysテーブル
 
-* Database initialization
+| Column             | Type           | Option        |
+|--------------------|----------------|---------------|
+| post_code          | integer        | null:false    |
+| prefecture         | text           | null:false    |
+| street_number      | text           | null:false    |
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+belongs_to: purchase
