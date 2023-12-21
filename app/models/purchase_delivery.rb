@@ -10,7 +10,7 @@ class PurchaseDelivery
     validates :user_id
     validates :item_id
   end
-  validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
+  validates :prefecture_id, numericality: {other_than: 1, message: "Please select"}
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id) 

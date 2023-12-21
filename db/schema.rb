@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_18_113136) do
     t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "street_number", null: false
-    t.string "building_name", null: false
+    t.string "building_name"
     t.string "phone_number", null: false
     t.bigint "purchase_id", null: false
     t.datetime "created_at", null: false
@@ -121,6 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_18_113136) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "deliveries", "purchases"
   add_foreign_key "items", "users"
   add_foreign_key "purchases", "items"
   add_foreign_key "purchases", "users"
