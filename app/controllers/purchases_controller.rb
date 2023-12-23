@@ -1,8 +1,9 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
   before_action :sold_out_item, only: [:index, :create]
   before_action :purchase_to_index, only: [:index, :create]
-  before_action :set_item, only: [:index, :create]
+
  
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -23,11 +24,13 @@ class PurchasesController < ApplicationController
   end
 
   private
+
   def set_item
-    @item = Item.find(params[item_id])
+    @item = Item.find(params[:item_id])
   end
+
   def purchase_params
-    params.require(:purchase_delivery).permit(:post_code, :prefecture_id, :city, :street_number, :phone_number, :building_name, ).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
+    params.require(:purchase_delivery).permit(:post_code, :prefecture_id, :city, :street_number, :phone_number, :building_name).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
   end
 
   def sold_out_item
