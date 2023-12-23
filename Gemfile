@@ -85,3 +85,5 @@ gem 'active_hash'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'pry-rails'
+gem 'payjp' # サーバーサイドがら決済を行うときに必要なAPI
+gem 'gon' # jsに変数を渡すためのgem

@@ -52,6 +52,11 @@ RSpec.describe PurchaseDelivery, type: :model do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include('Prefecture Please select')
       end
+      it 'tokenが空では購入できない' do
+        @purchase.token = nil
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Token can't be blank")
+      end
       it 'userが紐づいていないと購入できないこと' do
         @purchase.user_id = nil
         @purchase.valid?
