@@ -42,8 +42,18 @@ RSpec.describe PurchaseDelivery, type: :model do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが10桁か11桁の半角でないと購入できないこと' do
-        @purchase.phone_number = '1234567891011'
+      it 'phone_numberに半角数字以外が含まれている場合は購入できない' do
+        @purchase.phone_number = '123456789１0'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include( 'Phone number is Invalid')
+      end
+      it 'phone_numberが9桁以下では購入できないこと' do
+        @purchase.phone_number = '123456789'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include('Phone number is Invalid')
+      end
+      it 'phone_numberが12桁以上では購入できないこと' do
+        @purchase.phone_number = '123456789101'
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include('Phone number is Invalid')
       end
