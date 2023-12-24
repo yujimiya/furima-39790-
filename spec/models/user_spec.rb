@@ -42,19 +42,19 @@ RSpec.describe User, type: :model do
         @user.password = '123456'
         @user.password_confirmation = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is  single-byte alphanumeric characters ')
+        expect(@user.errors.full_messages).to include('Password は、英数字混合である実用があります')
       end
       it 'passwordが半角英字のみの場合は登録できない' do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is  single-byte alphanumeric characters ')
+        expect(@user.errors.full_messages).to include('Password は、英数字混合である実用があります')
       end
       it 'passwordが全角の場合は登録できない' do
         @user.password = 'ああああああ'
         @user.password_confirmation = 'ああああああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is  single-byte alphanumeric characters ')
+        expect(@user.errors.full_messages).to include('Password は、英数字混合である実用があります')
       end
       it '重複したemailが存在する場合は登録できない' do
         @user.save

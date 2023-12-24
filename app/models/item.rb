@@ -18,8 +18,7 @@ class Item < ApplicationRecord
     less_than_or_equal_to: 9_999_999,
     message: 'Please enter a valid price between 300 and 9,999,999'
   }
-  # validates :price, presence: { message: "Please enter a price" }
   belongs_to :user
-  # has_one :purchase
+  has_one :purchase
   has_one_attached :image
 end
