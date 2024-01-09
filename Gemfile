@@ -92,3 +92,4 @@ gem 'image_processing', '~> 1.2'
 gem 'pry-rails'
 gem 'payjp' # サーバーサイドがら決済を行うときに必要なAPI
 gem 'gon' # jsに変数を渡すためのgem
+gem "aws-sdk-s3", require: false #S3を導入するためのgem →config/envirnments/development.rbを編集
